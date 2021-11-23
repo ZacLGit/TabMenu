@@ -1,0 +1,83 @@
+html {
+	box-sizing: border-box;
+	--timer: 1.5s;    
+	--tabsBackDropColour: DarkSlateGrey;
+}
+
+body{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: LightYellow;
+	height: 30vh;
+	overflow: hidden;
+	transition: background-color var(--timer);
+}
+
+.tabs{
+	display: flex;
+	position: relative;
+	align-items: center;
+	justify-content: center;
+	width: 900;
+	font-size: 30;
+	background-color: var(--tabsBackDropColour);
+}
+
+.tab_button{
+	all: unset;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	will-change: transform;
+	transition: transform var(--timeOut, var(--timer));
+	flex-grow: 1;
+	cursor: pointer;
+	position: relative;
+}
+
+.tab_img{
+	width: 90;
+	height: 90;
+	stroke: white;
+	fill: transparent;
+	stroke-width: 1.5;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-dasharray: 300; 
+}
+
+.svg-container {
+	width: 0;
+	height: 0;
+}
+
+.tab_button.active .tab_img {
+	animation: anim var(--timer) reverse; 
+}
+
+.tab_button.active {
+	transform: translate3d(0, -.8em , 0);
+}
+
+.tab_button.active::before{
+	transform: scale(1);
+	background-color: var(--animImgColour);
+}
+
+.tab_button::before{
+	content: "";
+	z-index: -1;
+	position: absolute;
+	transform: scale(0);
+	transition: background-color var(--timer), transform var(--timer); 
+	width: 150;
+	height: 150;
+	border-radius: 90%; 
+}
+
+@keyframes anim {
+    100% {
+        stroke-dashoffset: 300;
+    }
+}
